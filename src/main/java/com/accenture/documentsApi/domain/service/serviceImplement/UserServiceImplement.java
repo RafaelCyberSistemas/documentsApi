@@ -15,28 +15,29 @@ public class UserServiceImplement implements IUserService {
     IUserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
+    public List<User> buscarTodosUsuarios() {
         return userRepository.findAll();
     }
 
     @Override
-    public User findById(Integer id) {
+    public User buscarUsuarioPorId(Integer id) {
         return userRepository.findById(id).get();
+
     }
 
     @Override
-    public User save(User user) {
+    public User salvarUsuario(User user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User edit(User user) {
+    public User atualizarUsuario(User user) {
         return userRepository.save(user);
     }
 
     @Override
-    public void delete(User user) {
-        user = findById(user.getIdUser());
+    public void deletarUsuario(User user) {
+        user = buscarUsuarioPorId(user.getIdUser());
         userRepository.delete(user);
     }
 }

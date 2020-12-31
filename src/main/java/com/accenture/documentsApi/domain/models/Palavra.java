@@ -10,7 +10,7 @@ public class Palavra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_palavra")
-    private long idPalavra;
+    private Integer idPalavra;
 
     @Column(name = "palavra")
     private String palavra;
@@ -30,11 +30,11 @@ public class Palavra {
         this.idDocumento = idDocumento;
     }
 
-    public long getIdPalavra() {
+    public Integer getIdPalavra() {
         return idPalavra;
     }
 
-    public void setIdPalavra(long idPalavra) {
+    public void setIdPalavra(Integer idPalavra) {
         this.idPalavra = idPalavra;
     }
 

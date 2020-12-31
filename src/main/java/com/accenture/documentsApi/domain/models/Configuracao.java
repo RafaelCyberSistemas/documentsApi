@@ -9,7 +9,7 @@ public class Configuracao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_configuracao")
-    private long idConfiguracao;
+    private Integer idConfiguracao;
 
     @Column(name = "tipo_dispositivo")
     private String tipoDispositivo;
@@ -29,11 +29,11 @@ public class Configuracao {
         this.status = status;
     }
 
-    public long getIdConfiguracao() {
+    public Integer getIdConfiguracao() {
         return idConfiguracao;
     }
 
-    public void setIdConfiguracao(long idConfiguracao) {
+    public void setIdConfiguracao(Integer idConfiguracao) {
         this.idConfiguracao = idConfiguracao;
     }
 

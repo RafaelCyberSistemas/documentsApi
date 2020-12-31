@@ -13,7 +13,7 @@ public class Documento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_documento")
-    private long idDocumento;
+    private Integer idDocumento;
 
     @Column(name = "tipo_arquivo")
     private String tipoArquivo;
@@ -38,11 +38,11 @@ public class Documento {
         this.idUser = idUser;
     }
 
-    public long getIdDocumento() {
+    public Integer getIdDocumento() {
         return idDocumento;
     }
 
-    public void setIdDocumento(long idDocumento) {
+    public void setIdDocumento(Integer idDocumento) {
         this.idDocumento = idDocumento;
     }
 

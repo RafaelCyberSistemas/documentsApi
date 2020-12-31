@@ -16,7 +16,7 @@ public class DummyData {
     IUserRepository userRepository;
 
     //@PostConstruct
-    public void saveUser(){
+    public void salvarUsuario(){
         User user = new User("Login3", "123456", "Administrador");
 
         User userSaved = userRepository.save(user);
@@ -24,7 +24,7 @@ public class DummyData {
     }
 
     @PostConstruct
-    public void findAllUsers(){
+    public void buscarTodosUsuarios(){
         List<User> lista = new ArrayList<>();
         lista = userRepository.findAll();
 
@@ -34,13 +34,13 @@ public class DummyData {
     }
 
     //@PostConstruct
-    public void findByIdUser(){
+    public void buscarUsuarioPorId(){
         User user = userRepository.findById(3).get();
         System.out.println(user.getLogin() + " " + user.getTipoUser());
     }
 
     //@PostConstruct
-    public void deleteUser(){
+    public void deletarUsuario(){
         User user = userRepository.findById(3).get();
         userRepository.delete(user);
     }
