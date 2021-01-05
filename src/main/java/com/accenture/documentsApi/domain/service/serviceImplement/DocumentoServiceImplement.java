@@ -6,6 +6,7 @@ import com.accenture.documentsApi.domain.service.IDocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -13,6 +14,7 @@ public class DocumentoServiceImplement implements IDocumentoService {
 
     @Autowired
     IDocumentoRepository documentoRepository;
+    Documento documento = new Documento();
 
     @Override
     public List<Documento> buscarTodosDocumentos() {
@@ -25,18 +27,26 @@ public class DocumentoServiceImplement implements IDocumentoService {
     }
 
     @Override
-    public Documento salvarDocumento(Documento documento) {
-        return documentoRepository.save(documento);
+    public String salvarDocumento(Documento documento) {
+        Date date = new Date();
+        documento.setData(date);
+        documentoRepository.save(documento);
+        String body = "Documento salvo com sucesso!!!";
+        return body;
     }
 
     @Override
-    public Documento atualizarDocumento(Documento documento) {
-        return documentoRepository.save(documento);
+    public String atualizarDocumento(Documento documento) {
+        //documentoRepository.save(documento);
+        String body = "Documento atualizado com sucesso!!";
+        return body;
     }
 
     @Override
-    public void deletarDocumento(Documento documento) {
-        documento = buscarDocumentoPorId(documento.getIdDocumento());
+    public String deletarDocumento(Integer idDocumento) {
+        documento = buscarDocumentoPorId(idDocumento);
         documentoRepository.delete(documento);
+        String body = "Documento removido com sucesso!!";
+        return body;
     }
 }

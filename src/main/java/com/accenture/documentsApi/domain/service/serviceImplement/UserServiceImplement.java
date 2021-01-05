@@ -22,22 +22,28 @@ public class UserServiceImplement implements IUserService {
     @Override
     public User buscarUsuarioPorId(Integer id) {
         return userRepository.findById(id).get();
-
     }
 
     @Override
-    public User salvarUsuario(User user) {
-        return userRepository.save(user);
+    public String salvarUsuario(User user) {
+        userRepository.save(user);
+        String body = "Usuario: " + user.getLogin() + " tipo: " + user.getTipoUser() + " salvo com sucesso!!";
+        return body;
     }
 
     @Override
-    public User atualizarUsuario(User user) {
-        return userRepository.save(user);
+    public String atualizarUsuario(User user) {
+        //userRepository.save(user);
+        String body = "Usuario: " + user.getLogin() + " tipo: " + user.getTipoUser() + " atualizado com sucesso!";
+        return body;
     }
 
     @Override
-    public void deletarUsuario(User user) {
-        user = buscarUsuarioPorId(user.getIdUser());
+    public String deletarUsuario(Integer idUser) {
+        User user = new User();
+        user = buscarUsuarioPorId(idUser);
         userRepository.delete(user);
+        String body = "Usuário removido com sucesso!!";
+        return body;
     }
 }

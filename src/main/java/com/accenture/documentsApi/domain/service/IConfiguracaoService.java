@@ -10,6 +10,5 @@ public interface IConfiguracaoService {
     Configuracao buscarConfiguracaoPorId(Integer id);
     Configuracao salvarConfiguracao(Configuracao configuracao);
     Configuracao atualizarConfiguracao(Configuracao configuracao);
-    void deletarConfiguracao(Configuracao configuracao);
-
+    String deletarConfiguracao(Integer idConfiguracao);
 }

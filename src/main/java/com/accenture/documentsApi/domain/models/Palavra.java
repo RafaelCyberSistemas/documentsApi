@@ -24,6 +24,11 @@ public class Palavra {
     public Palavra() {
     }
 
+    public Palavra(String palavra, int quantidadeOcorrencias) {
+        this.palavra = palavra;
+        this.quantidadeOcorrencias = quantidadeOcorrencias;
+    }
+
     public Palavra(String palavra, int quantidadeOcorrencias, long idDocumento) {
         this.palavra = palavra;
         this.quantidadeOcorrencias = quantidadeOcorrencias;

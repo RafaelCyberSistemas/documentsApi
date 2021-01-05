@@ -1,55 +1,26 @@
-package com.accenture.documentsApi.domain.models;
+package com.accenture.documentsApi.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.util.Date;
 
-@Entity
-@Table(name = "tb_documento")
-public class Documento {
+public class DocumentoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_documento")
-    private Integer idDocumento;
-
-    @Column(name = "tipo_arquivo")
     private String tipoArquivo;
-
-    @Column(name = "tipo_dispositivo")
     private String tipoDispositivo;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    @Column(name = "data")
     private Date data;
-
-    @Column(name = "id_user")
     private int idUser;
 
-    public Documento() {
+    public DocumentoDto() {
     }
 
-    public Documento(String tipoArquivo, String tipoDispositivo, int idUser) {
-        this.tipoArquivo = tipoArquivo;
-        this.tipoDispositivo = tipoDispositivo;
-        this.idUser = idUser;
-    }
-
-    public Documento(Integer idDocumento, String tipoArquivo, String tipoDispositivo, Date data, int idUser) {
-        this.idDocumento = idDocumento;
+    public DocumentoDto(String tipoArquivo, String tipoDispositivo, Date data, int idUser) {
         this.tipoArquivo = tipoArquivo;
         this.tipoDispositivo = tipoDispositivo;
         this.data = data;
         this.idUser = idUser;
-    }
-
-    public Integer getIdDocumento() {
-        return idDocumento;
-    }
-
-    public void setIdDocumento(Integer idDocumento) {
-        this.idDocumento = idDocumento;
     }
 
     public String getTipoArquivo() {

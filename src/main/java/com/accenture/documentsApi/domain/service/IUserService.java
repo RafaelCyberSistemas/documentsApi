@@ -8,7 +8,7 @@ public interface IUserService {
 
     List<User> buscarTodosUsuarios();
     User buscarUsuarioPorId(Integer id);
-    User salvarUsuario(User user);
-    User atualizarUsuario(User user);
-    void deletarUsuario(User user);
+    String salvarUsuario(User user);
+    String atualizarUsuario(User user);
+    String deletarUsuario(Integer idUser);
 }

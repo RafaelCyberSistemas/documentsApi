@@ -1,5 +1,7 @@
 package com.accenture.documentsApi.domain.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,13 @@ public class Configuracao {
     }
 
     public Configuracao(String tipoDispositivo, String tipoDocumento, String status) {
+        this.tipoDispositivo = tipoDispositivo;
+        this.tipoDocumento = tipoDocumento;
+        this.status = status;
+    }
+
+    public Configuracao(Integer idConfiguracao, String tipoDispositivo, String tipoDocumento, String status) {
+        this.idConfiguracao = idConfiguracao;
         this.tipoDispositivo = tipoDispositivo;
         this.tipoDocumento = tipoDocumento;
         this.status = status;

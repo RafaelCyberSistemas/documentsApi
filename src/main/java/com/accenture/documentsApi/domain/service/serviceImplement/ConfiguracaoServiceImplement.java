@@ -35,8 +35,11 @@ public class ConfiguracaoServiceImplement implements IConfiguracaoService {
     }
 
     @Override
-    public void deletarConfiguracao(Configuracao configuracao) {
-        configuracao = buscarConfiguracaoPorId(configuracao.getIdConfiguracao());
+    public String deletarConfiguracao(Integer idConfiguracao) {
+        Configuracao configuracao = new Configuracao();
+        configuracao = buscarConfiguracaoPorId(idConfiguracao);
         configuracaoRepository.delete(configuracao);
+        String retorno = "Configuração removida com sucesso!";
+        return  retorno;
     }
 }

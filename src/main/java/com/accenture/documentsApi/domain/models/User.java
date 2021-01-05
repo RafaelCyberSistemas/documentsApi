@@ -29,6 +29,13 @@ public class User {
         this.tipoUser = tipoUser;
     }
 
+    public User(int idUser, String login, String password, String tipoUser) {
+        this.idUser = idUser;
+        this.login = login;
+        this.password = password;
+        this.tipoUser = tipoUser;
+    }
+
     public int getIdUser() {
         return idUser;
     }

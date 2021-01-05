@@ -8,7 +8,7 @@ public interface IDocumentoService {
 
     List<Documento> buscarTodosDocumentos();
     Documento buscarDocumentoPorId(Integer id);
-    Documento salvarDocumento(Documento documento);
-    Documento atualizarDocumento(Documento documento);
-    void deletarDocumento(Documento documento);
+    String salvarDocumento(Documento documento);
+    String atualizarDocumento(Documento documento);
+    String deletarDocumento(Integer idDocumento);
 }
