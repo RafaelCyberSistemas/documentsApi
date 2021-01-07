@@ -20,6 +20,9 @@ public class Documento {
     @Column(name = "tipo_dispositivo")
     private String tipoDispositivo;
 
+    @Column(name = "quantidade_de_palavras")
+    private int quantidadeDePalavras;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "data")
     private Date data;
@@ -30,16 +33,18 @@ public class Documento {
     public Documento() {
     }
 
-    public Documento(String tipoArquivo, String tipoDispositivo, int idUser) {
+    public Documento(String tipoArquivo, String tipoDispositivo, int quantidadeDePalavras, int idUser) {
         this.tipoArquivo = tipoArquivo;
         this.tipoDispositivo = tipoDispositivo;
+        this.quantidadeDePalavras = quantidadeDePalavras;
         this.idUser = idUser;
     }
 
-    public Documento(Integer idDocumento, String tipoArquivo, String tipoDispositivo, Date data, int idUser) {
+    public Documento(Integer idDocumento, String tipoArquivo, String tipoDispositivo, int quantidadeDePalavras, Date data, int idUser) {
         this.idDocumento = idDocumento;
         this.tipoArquivo = tipoArquivo;
         this.tipoDispositivo = tipoDispositivo;
+        this.quantidadeDePalavras = quantidadeDePalavras;
         this.data = data;
         this.idUser = idUser;
     }
@@ -74,6 +79,14 @@ public class Documento {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public int getQuantidadeDePalavras() {
+        return quantidadeDePalavras;
+    }
+
+    public void setQuantidadeDePalavras(int quantidadeDePalavras) {
+        this.quantidadeDePalavras = quantidadeDePalavras;
     }
 
     public int getIdUser() {

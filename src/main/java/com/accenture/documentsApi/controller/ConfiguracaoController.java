@@ -33,16 +33,14 @@ public class ConfiguracaoController {
 
     @PostMapping("/configuracao")
     public ResponseEntity salvarConfiguracao(@RequestBody ConfiguracaoDto dto){
-        Configuracao configuracao = new Configuracao(dto.getTipoDispositivo(), dto.getTipoDocumento(), dto.getStatus());
-        config = configuracaoService.salvarConfiguracao(configuracao);
-        String body = "Tipo Dispositivo " + config.getTipoDispositivo() + " tipo de Documento " + config.getTipoDocumento() +" Salvo com sucesso";
+        String body = configuracaoService.salvarConfiguracao(dto);
         return ResponseEntity.status(201).body(body);
     }
 
     @PutMapping("/configuracao")
-    public Configuracao atualizarConfiguracao(@RequestBody Configuracao configuracao){
-        config = configuracaoService.atualizarConfiguracao(configuracao);
-        return config;
+    public ResponseEntity atualizarConfiguracao(@RequestBody Configuracao configuracao){
+        String body = configuracaoService.atualizarConfiguracao(configuracao);
+        return ResponseEntity.status(201).body(body);
     }
 
     @DeleteMapping("/configuracao/{idConfiguracao}")

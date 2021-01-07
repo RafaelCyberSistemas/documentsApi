@@ -2,7 +2,6 @@ package com.accenture.documentsApi.controller;
 
 import com.accenture.documentsApi.domain.models.Documento;
 import com.accenture.documentsApi.domain.service.IDocumentoService;
-import com.accenture.documentsApi.domain.service.serviceImplement.DocumentoServiceImplement;
 import com.accenture.documentsApi.dto.DocumentoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ public class DocumentoController {
 
     @Autowired
     IDocumentoService documentoService;
-    Documento doc = new Documento();
 
     @GetMapping("/documentos")
     public List<Documento> buscarTodosDocumentos(){
@@ -28,25 +26,24 @@ public class DocumentoController {
 
     @GetMapping("/documento/{id}")
     public Documento buscarDocumentoPorId(@PathVariable int id){
+        Documento doc = new Documento();
         doc = documentoService.buscarDocumentoPorId(id);
         return doc;
     }
 
     @PostMapping("/documento")
     public ResponseEntity salvarDocumento(@RequestBody DocumentoDto dto){
-        Documento documento = new Documento(dto.getTipoArquivo(), dto.getTipoDispositivo(), dto.getIdUser());
-        String body = documentoService.salvarDocumento(documento);
+        String body = documentoService.salvarDocumento(dto);
         return ResponseEntity.status(201).body(body);
     }
 
     @PutMapping("/documento")
-    public ResponseEntity atualizarDocumento(@RequestBody Documento doc){
-        Documento documento = new Documento(doc.getIdDocumento(), doc.getTipoArquivo(), doc.getTipoDispositivo(), doc.getData(), doc.getIdUser());
+    public ResponseEntity atualizarDocumento(@RequestBody Documento documento){
         String body = documentoService.atualizarDocumento(documento);
         return ResponseEntity.status(201).body(body);
     }
 
-    @DeleteMapping("/deletarDocumento/{idDocumento}")
+    @DeleteMapping("/documento/{idDocumento}")
     public ResponseEntity deletarDocumento(@PathVariable Integer idDocumento){
         String body = documentoService.deletarDocumento(idDocumento);
         return ResponseEntity.status(201).body(body);

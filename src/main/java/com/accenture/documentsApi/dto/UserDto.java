@@ -1,9 +1,16 @@
 package com.accenture.documentsApi.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 public class UserDto {
 
+    @NotBlank(message = "O login não poder ser vazio")
     private String login;
+    @NotBlank(message = "A senha não pode ser vazia")
     private String password;
+    @NotBlank(message = "Precisa informar o tipo do usuário")
     private String tipoUser;
 
     public UserDto() {

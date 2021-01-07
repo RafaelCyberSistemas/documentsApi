@@ -3,6 +3,7 @@ package com.accenture.documentsApi.domain.service.serviceImplement;
 import com.accenture.documentsApi.domain.models.Documento;
 import com.accenture.documentsApi.domain.repository.IDocumentoRepository;
 import com.accenture.documentsApi.domain.service.IDocumentoService;
+import com.accenture.documentsApi.dto.DocumentoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ public class DocumentoServiceImplement implements IDocumentoService {
 
     @Autowired
     IDocumentoRepository documentoRepository;
-    Documento documento = new Documento();
 
     @Override
     public List<Documento> buscarTodosDocumentos() {
@@ -27,7 +27,8 @@ public class DocumentoServiceImplement implements IDocumentoService {
     }
 
     @Override
-    public String salvarDocumento(Documento documento) {
+    public String salvarDocumento(DocumentoDto dto) {
+        Documento documento = new Documento(dto.getTipoArquivo(), dto.getTipoDispositivo(), dto.getQuantidadeDePalavras(), dto.getIdUser());
         Date date = new Date();
         documento.setData(date);
         documentoRepository.save(documento);
@@ -44,6 +45,7 @@ public class DocumentoServiceImplement implements IDocumentoService {
 
     @Override
     public String deletarDocumento(Integer idDocumento) {
+        Documento documento = new Documento();
         documento = buscarDocumentoPorId(idDocumento);
         documentoRepository.delete(documento);
         String body = "Documento removido com sucesso!!";

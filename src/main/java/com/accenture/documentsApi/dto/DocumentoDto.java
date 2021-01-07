@@ -11,15 +11,16 @@ public class DocumentoDto {
     private String tipoDispositivo;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date data;
+    private int quantidadeDePalavras;
     private int idUser;
 
     public DocumentoDto() {
     }
 
-    public DocumentoDto(String tipoArquivo, String tipoDispositivo, Date data, int idUser) {
+    public DocumentoDto(String tipoArquivo, String tipoDispositivo, int quantidadeDePalavras, int idUser) {
         this.tipoArquivo = tipoArquivo;
         this.tipoDispositivo = tipoDispositivo;
-        this.data = data;
+        this.quantidadeDePalavras = quantidadeDePalavras;
         this.idUser = idUser;
     }
 
@@ -45,6 +46,14 @@ public class DocumentoDto {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public int getQuantidadeDePalavras() {
+        return quantidadeDePalavras;
+    }
+
+    public void setQuantidadeDePalavras(int quantidadeDePalavras) {
+        this.quantidadeDePalavras = quantidadeDePalavras;
     }
 
     public int getIdUser() {

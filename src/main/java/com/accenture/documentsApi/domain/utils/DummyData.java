@@ -57,7 +57,7 @@ public class DummyData {
     //@PostConstruct
     public void salvarDocumento(){
         Date date = new Date();
-        Documento documento = new Documento("TXT", "MOBILE", 1);
+        Documento documento = new Documento("TXT", "MOBILE", 1, 1);
         documento.setData(date);
         Documento documentoSalved = documentoRepository.save(documento);
     }

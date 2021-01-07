@@ -3,6 +3,7 @@ package com.accenture.documentsApi.domain.service.serviceImplement;
 import com.accenture.documentsApi.domain.models.Configuracao;
 import com.accenture.documentsApi.domain.repository.IConfiguracaoRepository;
 import com.accenture.documentsApi.domain.service.IConfiguracaoService;
+import com.accenture.documentsApi.dto.ConfiguracaoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +26,18 @@ public class ConfiguracaoServiceImplement implements IConfiguracaoService {
     }
 
     @Override
-    public Configuracao salvarConfiguracao(Configuracao configuracao) {
-        return configuracaoRepository.save(configuracao);
+    public String salvarConfiguracao(ConfiguracaoDto configuracaoDto) {
+        Configuracao configuracao = new Configuracao(configuracaoDto.getTipoDispositivo(), configuracaoDto.getTipoDocumento(), configuracaoDto.getStatus());
+        configuracaoRepository.save(configuracao);
+        String body = "Configuração para dispositivo " + configuracao.getTipoDispositivo() + " tipo de Documento " + configuracao.getTipoDocumento() + " salva com sucesso!!";
+        return body;
     }
 
     @Override
-    public Configuracao atualizarConfiguracao(Configuracao configuracao) {
-        return configuracaoRepository.save(configuracao);
+    public String atualizarConfiguracao(Configuracao configuracao) {
+        configuracaoRepository.save(configuracao);
+        String body = "Configuração atualizada com sucesso!!";
+        return body;
     }
 
     @Override
