@@ -1,9 +1,9 @@
 package com.accenture.documentsApi.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.util.Date;
+
 
 @Entity
 @Table(name = "tb_documento")
@@ -13,6 +13,9 @@ public class Documento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_documento")
     private Integer idDocumento;
+
+    @Column(name = "nome_arquivo")
+    private String nomeArquivo;
 
     @Column(name = "tipo_arquivo")
     private String tipoArquivo;
@@ -27,26 +30,19 @@ public class Documento {
     @Column(name = "data")
     private Date data;
 
-    @Column(name = "id_user")
-    private int idUser;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
     public Documento() {
     }
 
-    public Documento(String tipoArquivo, String tipoDispositivo, int quantidadeDePalavras, int idUser) {
+    public Documento(String nomeArquivo, String tipoArquivo, String tipoDispositivo, int quantidadeDePalavras, User user) {
+        this.nomeArquivo = nomeArquivo;
         this.tipoArquivo = tipoArquivo;
         this.tipoDispositivo = tipoDispositivo;
         this.quantidadeDePalavras = quantidadeDePalavras;
-        this.idUser = idUser;
-    }
-
-    public Documento(Integer idDocumento, String tipoArquivo, String tipoDispositivo, int quantidadeDePalavras, Date data, int idUser) {
-        this.idDocumento = idDocumento;
-        this.tipoArquivo = tipoArquivo;
-        this.tipoDispositivo = tipoDispositivo;
-        this.quantidadeDePalavras = quantidadeDePalavras;
-        this.data = data;
-        this.idUser = idUser;
+        this.user = user;
     }
 
     public Integer getIdDocumento() {
@@ -89,11 +85,19 @@ public class Documento {
         this.quantidadeDePalavras = quantidadeDePalavras;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
     }
 }

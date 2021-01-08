@@ -23,6 +23,10 @@ public class User {
     public User() {
     }
 
+    public User(int idUser) {
+        this.idUser = idUser;
+    }
+
     public User(String login, String password, String tipoUser) {
         this.login = login;
         this.password = password;

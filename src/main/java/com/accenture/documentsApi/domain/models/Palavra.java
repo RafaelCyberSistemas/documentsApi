@@ -18,21 +18,23 @@ public class Palavra {
     @Column(name = "qtd_ocorrencias")
     private int quantidadeOcorrencias;
 
-    @Column(name = "id_documento")
-    private long idDocumento;
+    @ManyToOne
+    @JoinColumn(name = "id_documento")
+    Documento documento;
 
     public Palavra() {
     }
 
-    public Palavra(String palavra, int quantidadeOcorrencias) {
+    public Palavra(String palavra) {
         this.palavra = palavra;
-        this.quantidadeOcorrencias = quantidadeOcorrencias;
+        this.quantidadeOcorrencias = 0;
+        this.documento = new Documento();
     }
 
-    public Palavra(String palavra, int quantidadeOcorrencias, long idDocumento) {
+    public Palavra(String palavra, int quantidadeOcorrencias, Documento documento) {
         this.palavra = palavra;
         this.quantidadeOcorrencias = quantidadeOcorrencias;
-        this.idDocumento = idDocumento;
+        this.documento = documento;
     }
 
     public Integer getIdPalavra() {
@@ -59,11 +61,11 @@ public class Palavra {
         this.quantidadeOcorrencias = quantidadeOcorrencias;
     }
 
-    public long getIdDocumento() {
-        return idDocumento;
+    public Documento getDocumento() {
+        return documento;
     }
 
-    public void setIdDocumento(long idDocumento) {
-        this.idDocumento = idDocumento;
+    public void setDocumento(Documento documento) {
+        this.documento = documento;
     }
 }

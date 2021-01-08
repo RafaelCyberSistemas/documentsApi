@@ -3,10 +3,13 @@ package com.accenture.documentsApi.controller;
 import com.accenture.documentsApi.domain.models.Documento;
 import com.accenture.documentsApi.domain.service.IDocumentoService;
 import com.accenture.documentsApi.dto.DocumentoDto;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,14 @@ public class DocumentoController {
         String body = documentoService.salvarDocumento(dto);
         return ResponseEntity.status(201).body(body);
     }
+
+
+    @PostMapping("/saveDoc")
+    public Documento saveDoc(@RequestParam MultipartFile file){
+        Documento documento = documentoService.saveDoc(file);
+        return documento;
+    }
+
 
     @PutMapping("/documento")
     public ResponseEntity atualizarDocumento(@RequestBody Documento documento){
