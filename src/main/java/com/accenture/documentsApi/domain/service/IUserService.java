@@ -11,5 +11,5 @@ public interface IUserService {
     User buscarUsuarioPorId(Integer id);
     String salvarUsuario(UserDto userDto);
     String atualizarUsuario(User user);
-    String deletarUsuario(Integer idUser);
+    void deletarUsuario(Integer idUser);
 }

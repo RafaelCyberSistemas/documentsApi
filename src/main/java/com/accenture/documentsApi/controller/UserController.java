@@ -45,9 +45,8 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{idUser}")
-    public ResponseEntity deletarUsuario(@PathVariable int idUser){
-        String body = userService.deletarUsuario(idUser);
-        return ResponseEntity.status(201).body(body);
+    public void deletarUsuario(@PathVariable int idUser){
+        userService.deletarUsuario(idUser);
     }
 
 }

@@ -37,17 +37,23 @@ public class UserServiceImplement implements IUserService {
 
     @Override
     public String atualizarUsuario(User user) {
-        userRepository.save(user);
-        String body = "Usuario: " + user.getLogin() + " tipo: " + user.getTipoUser() + " atualizado com sucesso!";
-        return body;
+        String body;
+        if(userRepository.existsById(user.getIdUser())){
+            userRepository.save(user);
+            body = "Usuario: " + user.getLogin() + " tipo: " + user.getTipoUser() + " atualizado com sucesso!";
+            return body;
+        }else{
+            throw new NotFoundException("Não existe usuário com este ID: " + user.getIdUser() + " para ser atualizado");
+        }
     }
 
     @Override
-    public String deletarUsuario(Integer idUser) {
-        User user = new User();
-        user = buscarUsuarioPorId(idUser);
-        userRepository.delete(user);
-        String body = "Usuário removido com sucesso!!";
-        return body;
+    public void deletarUsuario(Integer idUser) {
+        if(userRepository.existsById(idUser)){
+            userRepository.deleteById(idUser);
+        }else{
+            throw new NotFoundException("Não existe usuário cadastrado com este ID: " + idUser);
+        }
+
     }
 }

@@ -10,8 +10,7 @@ public interface IDocumentoService {
 
     List<Documento> buscarTodosDocumentos();
     Documento buscarDocumentoPorId(Integer id);
-    String salvarDocumento(DocumentoDto documentoDto);
-    Documento saveDoc(MultipartFile file);
+    Documento salvarDocumento(MultipartFile file);
     String atualizarDocumento(Documento documento);
-    String deletarDocumento(Integer idDocumento);
+    void deletarDocumento(Integer idDocumento);
 }

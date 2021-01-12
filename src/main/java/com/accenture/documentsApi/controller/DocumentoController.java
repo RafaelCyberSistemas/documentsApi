@@ -2,14 +2,11 @@ package com.accenture.documentsApi.controller;
 
 import com.accenture.documentsApi.domain.models.Documento;
 import com.accenture.documentsApi.domain.service.IDocumentoService;
-import com.accenture.documentsApi.dto.DocumentoDto;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,16 +31,10 @@ public class DocumentoController {
         return doc;
     }
 
+
     @PostMapping("/documento")
-    public ResponseEntity salvarDocumento(@RequestBody DocumentoDto dto){
-        String body = documentoService.salvarDocumento(dto);
-        return ResponseEntity.status(201).body(body);
-    }
-
-
-    @PostMapping("/saveDoc")
-    public Documento saveDoc(@RequestParam MultipartFile file){
-        Documento documento = documentoService.saveDoc(file);
+    public Documento salvarDocumento(@RequestParam MultipartFile file){
+        Documento documento = documentoService.salvarDocumento(file);
         return documento;
     }
 
@@ -55,8 +46,7 @@ public class DocumentoController {
     }
 
     @DeleteMapping("/documento/{idDocumento}")
-    public ResponseEntity deletarDocumento(@PathVariable Integer idDocumento){
-        String body = documentoService.deletarDocumento(idDocumento);
-        return ResponseEntity.status(201).body(body);
+    public void deletarDocumento(@PathVariable Integer idDocumento){
+        documentoService.deletarDocumento(idDocumento);
     }
 }

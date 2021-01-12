@@ -44,8 +44,7 @@ public class ConfiguracaoController {
     }
 
     @DeleteMapping("/configuracao/{idConfiguracao}")
-    public ResponseEntity deletarConfiguracao(@PathVariable int idConfiguracao){
-        String body = configuracaoService.deletarConfiguracao(idConfiguracao);
-        return ResponseEntity.status(201).body(body);
+    public void deletarConfiguracao(@PathVariable int idConfiguracao){
+        configuracaoService.deletarConfiguracao(idConfiguracao);
     }
 }

@@ -42,26 +42,11 @@ public class DocumentoServiceImplement implements IDocumentoService {
     }
 
     @Override
-    public String salvarDocumento(DocumentoDto dto) {
-        User user = new User(dto.getIdUser());
-        Documento documento = new Documento(dto.getNomeArquivo(), dto.getTipoArquivo(), dto.getTipoDispositivo(), dto.getQuantidadeDePalavras(), user);
-        Date date = new Date();
-        documento.setData(date);
-        Documento documentoSalved = documentoRepository.save(documento);
-        String body = "Documento código: " + documentoSalved.getIdDocumento() +" salvo com sucesso!!!";
-        return body;
-    }
-
-    @Override
-    public Documento saveDoc(MultipartFile file) {
+    public Documento salvarDocumento(MultipartFile file) {
         DocumentoDto documentoDto = new DocumentoDto();
-
         String nomeArquivo = file.getOriginalFilename();
         String tipoArquivo = FilenameUtils.getExtension(nomeArquivo);
-
-        //TO DO
-        String tipoDispositivo = "TESTE MOBILE";
-
+        String tipoDispositivo = "TESTE MOBILE"; //FALTA PEGAR O TIPO DO SISPOSITOVO DE ONDE ESTA VINDO A REQUISIÇÃO
         InputStream inputStream = null;
         String textoConvertido = "";
 
@@ -83,7 +68,6 @@ public class DocumentoServiceImplement implements IDocumentoService {
         List<String> qtdDePalavrasNoDocumento = new ArrayList<>();
         qtdDePalavrasNoDocumento = Arrays.asList(textoConvertido.split(" "));
         documentoDto.setQuantidadeDePalavras(qtdDePalavrasNoDocumento.size());
-        //TO DO
 
         User user = new User(1);
         Documento documento = new Documento(documentoDto.getNomeArquivo(), documentoDto.getTipoArquivo(), documentoDto.getTipoDispositivo(),documentoDto.getQuantidadeDePalavras(), user );
@@ -92,7 +76,6 @@ public class DocumentoServiceImplement implements IDocumentoService {
 
         Documento documentoSalved = documentoRepository.save(documento);
 
-        //PARA APENAS ADICIONAR O ID DO DOCUMENTO NOS OBJETOS PALAVRAS DA LISTA DE PALAVRAS QUE SERÁ SALVA
         for (Palavra palavra: documentoDto.listaDePalavras) {
             palavra.getDocumento().setIdDocumento(documentoSalved.getIdDocumento());
             palavraRepository.save(palavra);
@@ -124,30 +107,28 @@ public class DocumentoServiceImplement implements IDocumentoService {
                     listaDePalavrasProcessadas.get(i).setQuantidadeOcorrencias(contador);
                 }
             }
-
         }
         return listaDePalavrasProcessadas;
     }
 
-    public void salvarPalavrasDoDocumento(Palavra palavra){
-            palavraRepository.save(palavra);
-    }
-
-
-
     @Override
     public String atualizarDocumento(Documento documento) {
-        //documentoRepository.save(documento);
-        String body = "Documento atualizado com sucesso!!";
-        return body;
+        if(documentoRepository.existsById(documento.getIdDocumento())){
+            documentoRepository.save(documento);
+            String body = "Documento atualizado com sucesso!!";
+            return body;
+        }else{
+            throw new NotFoundException("Não existe documento com este ID: " + documento.getIdDocumento() + " para ser atualizado");
+        }
     }
 
     @Override
-    public String deletarDocumento(Integer idDocumento) {
-        Documento documento = new Documento();
-        documento = buscarDocumentoPorId(idDocumento);
-        documentoRepository.delete(documento);
-        String body = "Documento removido com sucesso!!";
-        return body;
+    public void deletarDocumento(Integer idDocumento) {
+        if(documentoRepository.existsById(idDocumento)){
+            documentoRepository.deleteById(idDocumento);
+        }else{
+            throw new NotFoundException("Não existe documento com este ID: " + idDocumento + " para ser deletado");
+        }
+
     }
 }
