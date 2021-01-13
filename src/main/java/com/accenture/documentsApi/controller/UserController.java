@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     IUserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/user")
     public List<User> buscarTodosUsuarios(){
         List<User> listaRetorno = new ArrayList<>();
         listaRetorno = userService.buscarTodosUsuarios();

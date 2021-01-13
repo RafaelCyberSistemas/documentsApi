@@ -18,7 +18,7 @@ public class ConfiguracaoController {
     IConfiguracaoService configuracaoService;
     Configuracao config = new Configuracao();
 
-    @GetMapping("/configuracoes")
+    @GetMapping("/configuracao")
     public List<Configuracao> buscarTodasConfiguracaoes(){
         List<Configuracao> listaRetorno = new ArrayList<>();
         listaRetorno = configuracaoService.buscarTodasConfiguracoes();

@@ -17,7 +17,7 @@ public class DocumentoController {
     @Autowired
     IDocumentoService documentoService;
 
-    @GetMapping("/documentos")
+    @GetMapping("/documento")
     public List<Documento> buscarTodosDocumentos(){
         List<Documento> listaRetorno = new ArrayList<>();
         listaRetorno = documentoService.buscarTodosDocumentos();
